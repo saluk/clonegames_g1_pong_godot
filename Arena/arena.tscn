@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdxx7rd77mrn2"]
+[gd_scene load_steps=10 format=3 uid="uid://bdxx7rd77mrn2"]
 
 [ext_resource type="PackedScene" uid="uid://gbuh3dmybp6t" path="res://Arena/ball.tscn" id="1_ddjon"]
 [ext_resource type="Script" uid="uid://bx6bh3tsk2jqc" path="res://Effects/camera.gd" id="1_upiig"]
 [ext_resource type="PackedScene" uid="uid://bktw3kd53ogei" path="res://Arena/wall.tscn" id="1_v8uor"]
 [ext_resource type="PackedScene" uid="uid://ccsuls3freng4" path="res://Arena/paddle.tscn" id="3_sswsf"]
 [ext_resource type="Script" uid="uid://bpojq407aran1" path="res://Arena/hotkeys.gd" id="5_uea7w"]
+[ext_resource type="PackedScene" uid="uid://c8nh6awwlaijd" path="res://Match/MatchManager.tscn" id="6_weid8"]
+[ext_resource type="PackedScene" uid="uid://ufujpspdg32u" path="res://UI/MatchUI.tscn" id="7_ts82m"]
 
 [sub_resource type="Environment" id="Environment_ddjon"]
 background_mode = 3
@@ -12,6 +14,13 @@ background_mode = 3
 [sub_resource type="Compositor" id="Compositor_upiig"]
 
 [node name="Arena" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
 
 [node name="WallTop" parent="." instance=ExtResource("1_v8uor")]
 position = Vector2(0, -40)
@@ -45,7 +54,25 @@ position = Vector2(60, 0)
 player = "P2"
 
 [node name="Hotkeys" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("5_uea7w")
+
+[node name="MatchManager" parent="." instance=ExtResource("6_weid8")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MatchUi" parent="Control" instance=ExtResource("7_ts82m")]
+layout_mode = 1
+offset_left = -80.0
+offset_top = -37.0
+offset_right = 40.0
+offset_bottom = 13.0
 
 [editable path="Paddle1"]
 [editable path="Paddle2"]

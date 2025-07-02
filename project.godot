@@ -23,7 +23,7 @@ ScreenManager="*res://Globals/ScreenManager.tscn"
 [display]
 
 window/stretch/mode="viewport"
-window/stretch/scale=8.0
+window/stretch/scale=7.0
 window/stretch/scale_mode="integer"
 
 [input]

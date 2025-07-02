@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8nh6awwlaijd"]
+
+[ext_resource type="Script" uid="uid://duxpsynwdgnh2" path="res://Match/match_manager.gd" id="1_1djnr"]
+
+[node name="MatchManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_1djnr")
