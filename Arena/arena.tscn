@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdxx7rd77mrn2"]
+
+[ext_resource type="PackedScene" uid="uid://gbuh3dmybp6t" path="res://Arena/ball.tscn" id="1_ddjon"]
+[ext_resource type="Script" uid="uid://bx6bh3tsk2jqc" path="res://Effects/camera.gd" id="1_upiig"]
+[ext_resource type="PackedScene" uid="uid://bktw3kd53ogei" path="res://Arena/wall.tscn" id="1_v8uor"]
+[ext_resource type="PackedScene" uid="uid://ccsuls3freng4" path="res://Arena/paddle.tscn" id="3_sswsf"]
+[ext_resource type="Script" uid="uid://bpojq407aran1" path="res://Arena/hotkeys.gd" id="5_uea7w"]
+
+[sub_resource type="Environment" id="Environment_ddjon"]
+background_mode = 3
+
+[sub_resource type="Compositor" id="Compositor_upiig"]
+
+[node name="Arena" type="Node2D"]
+
+[node name="WallTop" parent="." instance=ExtResource("1_v8uor")]
+position = Vector2(0, -40)
+
+[node name="WallBottom" parent="." instance=ExtResource("1_v8uor")]
+position = Vector2(0, 41)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
+
+[node name="CameraEffects" type="Node" parent="Camera2D"]
+process_mode = 4
+script = ExtResource("1_upiig")
+
+[node name="Ball" parent="." instance=ExtResource("1_ddjon")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ddjon")
+compositor = SubResource("Compositor_upiig")
+
+[node name="Paddle1" parent="." instance=ExtResource("3_sswsf")]
+position = Vector2(-60, 0)
+
+[node name="PlayerInput" parent="Paddle1" index="2"]
+player = "P1"
+
+[node name="Paddle2" parent="." instance=ExtResource("3_sswsf")]
+position = Vector2(60, 0)
+
+[node name="PlayerInput" parent="Paddle2" index="2"]
+player = "P2"
+
+[node name="Hotkeys" type="Node" parent="."]
+script = ExtResource("5_uea7w")
+
+[editable path="Paddle1"]
+[editable path="Paddle2"]

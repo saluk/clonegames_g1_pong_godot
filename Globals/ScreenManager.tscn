@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4dqrgi46n7iw"]
+
+[ext_resource type="Script" uid="uid://dmhbc2noxyxmy" path="res://Globals/screen_manager.gd" id="1_mh3yv"]
+
+[node name="ScreenManager" type="Node"]
+script = ExtResource("1_mh3yv")

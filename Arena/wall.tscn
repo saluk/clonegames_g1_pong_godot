@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bktw3kd53ogei"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6y1j7"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6y1j7"]
+size = Vector2(150, 2)
+
+[node name="Wall" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -75.0
+offset_top = -1.0
+offset_right = 75.0
+offset_bottom = 1.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_6y1j7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_6y1j7")
