@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bolful432l26n"]
+
+[ext_resource type="Script" uid="uid://sb744cppp0tu" path="res://UI/menu_button.gd" id="1_un80f"]
+
+[node name="MenuButton" type="Button"]
+script = ExtResource("1_un80f")

@@ -7,6 +7,8 @@ extends Node
 @export var speed := 100.0
 @export var rotation_speed := 4.0
 @export var max_rotation := 1.0
+@export var min_y := -30
+@export var max_y := 30
 
 var rotation := 0.0
 var is_touched = false
@@ -49,7 +51,12 @@ func _physics_process(dt: float) -> void:
 	if rotation < -max_rotation:
 		rotation = -max_rotation
 
-	var transform := Transform2D(rotation, parent.position+move_vel)
+	var new_pos = parent.position+move_vel
+	if new_pos.y > max_y:
+		new_pos.y = max_y
+	if new_pos.y < min_y:
+		new_pos.y = min_y
+	var transform := Transform2D(rotation, new_pos)
 	parent.transform = transform
 
 	mouse_move = Vector2()

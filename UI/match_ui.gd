@@ -17,19 +17,29 @@ func update_scores(score_values):
 			update_score(scores[i], score_values[i])
 			
 func update_score(score_ob:Label, value:int):
-	var l:Label = Label.new()
-	l.text = str(value)
-	anims.add_child(l)
-	l.position = Vector2(75,0)
-	var d:Vector2 = score_ob.global_position - l.global_position
-	while d.length() > 1:
-		await get_tree().process_frame
-		d = score_ob.global_position - l.global_position
-		l.global_position += d.normalized()*get_process_delta_time()*100
+	var old_text = score_ob.text
 	score_ob.text = str(value)
+	var t:Timer = Timer.new()
+	t.wait_time = 0.5
+	t.one_shot = true
+	var l:Label = Label.new()
+	l.text = old_text
+	anims.add_child(l)
+	anims.add_child(t)
+	t.start()
+	l.global_position = score_ob.global_position
+	var launch_dir = Vector2.from_angle(randf()*360) * randf_range(150,200)
+	var angle_speed = randf_range(200, 400)
+	while t.time_left:
+		await get_tree().process_frame
+		l.position += launch_dir * get_process_delta_time()
+		l.rotation_degrees += angle_speed * get_process_delta_time()
 	anims.remove_child(l)
+	anims.remove_child(t)
 
 func show_win(player:int):
-	win.text = "Player "+str(player+1)+" won! [R] to restart"
+	win.text = "Player "+str(player+1)+" won!"
 	win.visible = true
 	win.get_child(0).emitting = true
+	var match_end_menu = load("res://UI/MatchEndMenu.tscn").instantiate()
+	add_child(match_end_menu)

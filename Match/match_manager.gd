@@ -4,11 +4,12 @@ var score:Array[int] = [0, 0]
 @export var play_to_points := 3
 var is_won = false
 
-func _ready():
+func _ready() -> void:
 	EventManager.score_update.emit(score)
 	EventManager.ball_off_screen.connect(player_scored)
+	EventManager.rematch.connect(rematch)
 	
-func player_scored(xpos):
+func player_scored(xpos) -> void:
 	var player:int = 0 if xpos > 0 else 1
 	add_score(player)
 	var t:Timer = Timer.new()
@@ -20,10 +21,14 @@ func player_scored(xpos):
 	if not is_won:
 		EventManager.reset_ball.emit()
 
-func add_score(player):
+func add_score(player) -> void:
 	score[player] += 1
 	EventManager.score_update.emit(score)
 	if score[player] >= play_to_points:
 		is_won = true
 		get_tree().paused = true
 		EventManager.game_won.emit(player)
+
+func rematch() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()

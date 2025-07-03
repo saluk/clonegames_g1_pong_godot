@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://djqgybt1wviqx"]
+
+[ext_resource type="Theme" uid="uid://cfesykpkt6hh7" path="res://UI/lowres.tres" id="1_y13bc"]
+[ext_resource type="Script" uid="uid://bqnsdbo2vo1qq" path="res://UI/match_end_menu.gd" id="2_0fxi0"]
+
+[node name="MatchEndMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_y13bc")
+script = ExtResource("2_0fxi0")
+
+[node name="MenuTitle" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Main Menu"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+
+[node name="buttons" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
