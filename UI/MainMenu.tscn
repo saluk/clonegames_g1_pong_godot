@@ -24,7 +24,7 @@ text = "Main Menu"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
-offset_right = 100.0
+offset_right = 200.0
 offset_bottom = 100.0
 
 [node name="buttons" type="VBoxContainer" parent="CenterContainer"]

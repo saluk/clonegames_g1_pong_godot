@@ -7,9 +7,13 @@ extends Control
 @onready var anims = get_tree().get_first_node_in_group("anims")
 @onready var win = get_tree().get_first_node_in_group("win")
 
+var pause_menu_ui = null
+
 func _ready() -> void:
 	EventManager.score_update.connect(update_scores)
 	EventManager.game_won.connect(show_win)
+	EventManager.pause_match.connect(pause_menu)
+	EventManager.resume_match.connect(resume_match)
 
 func update_scores(score_values):
 	for i in range(len(score_values)):
@@ -38,8 +42,22 @@ func update_score(score_ob:Label, value:int):
 	anims.remove_child(t)
 
 func show_win(player:int):
+	if pause_menu_ui:
+		remove_child(pause_menu_ui)
 	win.text = "Player "+str(player+1)+" won!"
 	win.visible = true
 	win.get_child(0).emitting = true
-	var match_end_menu = load("res://UI/MatchEndMenu.tscn").instantiate()
-	add_child(match_end_menu)
+	pause_menu_ui = load("res://UI/MatchEndMenu.tscn").instantiate()
+	add_child(pause_menu_ui)
+
+func pause_menu() -> void:
+	if not pause_menu_ui:
+		get_tree().paused = true
+		pause_menu_ui = load("res://UI/PauseMenu.tscn").instantiate()
+		add_child(pause_menu_ui)
+
+func resume_match() -> void:
+	if pause_menu_ui:
+		remove_child(pause_menu_ui)
+		pause_menu_ui = null
+		get_tree().paused = false

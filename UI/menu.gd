@@ -50,9 +50,9 @@ func init_menu() -> void:
 			button.pressed.connect(func(): 
 				var new_menu = []
 				new_menu.append(submenu[0])
-				new_menu.append(["<", "prev_menu"])
 				for subitem in submenu.slice(1):
 					new_menu.append(subitem)
+				new_menu.append(["<", "prev_menu"])
 				stack.append(new_menu)
 				init_menu()
 			)

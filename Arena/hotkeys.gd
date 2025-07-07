@@ -5,3 +5,5 @@ func _unhandled_input(event: InputEvent) -> void:
 		EventManager.rematch.emit()
 	if event.is_action_pressed("points hotkey"):
 		EventManager.score_update.emit([1,randi_range(1,9)])
+	if event.is_action_pressed("pause"):
+		EventManager.pause_match.emit()
