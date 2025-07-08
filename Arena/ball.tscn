@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://gbuh3dmybp6t"]
+[gd_scene load_steps=5 format=3 uid="uid://gbuh3dmybp6t"]
 
 [ext_resource type="Script" uid="uid://bsx20sqd6gkxg" path="res://Arena/ball.gd" id="1_7mx2m"]
 [ext_resource type="Script" uid="uid://66xevrnhcpbe" path="res://Arena/ball_response.gd" id="2_updea"]
+[ext_resource type="Script" uid="uid://h6e7sb54mdpf" path="res://Effects/motion_blur_component.gd" id="3_xx4qm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_updea"]
 size = Vector2(2, 2)
@@ -9,14 +10,20 @@ size = Vector2(2, 2)
 [node name="Ball" type="RigidBody2D"]
 script = ExtResource("1_7mx2m")
 
+[node name="MotionBlurComponent" type="Node2D" parent="."]
+script = ExtResource("3_xx4qm")
+copy_object_path = NodePath("../Gfx")
+trail_count = 16
+fade_amount = 0.95
+initial_scale_amount = 0.75
+scale_amount = 1.0
+metadata/_custom_type_script = "uid://h6e7sb54mdpf"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_updea")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1.0
-offset_top = -1.0
-offset_right = 1.0
-offset_bottom = 1.0
+[node name="Gfx" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(1, -1, 1, 1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1)
 
 [node name="CollisionResponse" type="Node" parent="."]
 script = ExtResource("2_updea")

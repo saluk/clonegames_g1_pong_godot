@@ -3,12 +3,12 @@ extends Node
 @onready var parent:AnimatableBody2D = get_parent()
 @onready var collisionshape:CollisionShape2D = parent.get_node("CollisionShape2D")
 
-@export var player:String
+@export var player:String = "P1"
 @export var speed := 100.0
 @export var rotation_speed := 4.0
 @export var max_rotation := 1.0
-@export var min_y := -30
-@export var max_y := 30
+@export var min_y := -28
+@export var max_y := 28
 
 var rotation := 0.0
 var is_touched = false

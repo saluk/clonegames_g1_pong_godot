@@ -1,26 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccsuls3freng4"]
+[gd_scene load_steps=7 format=3 uid="uid://ccsuls3freng4"]
 
 [ext_resource type="Script" uid="uid://cp0rwjyq7ioco" path="res://Arena/player_controls.gd" id="1_pinrn"]
+[ext_resource type="Script" uid="uid://h6e7sb54mdpf" path="res://Effects/motion_blur_component.gd" id="2_0fepv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pinrn"]
 friction = 0.0
 bounce = 1.0
 
+[sub_resource type="Gradient" id="Gradient_0fepv"]
+offsets = PackedFloat32Array(0, 0.2, 0.813793, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.299547, 0.299547, 0.299547, 1, 0.241156, 0.241156, 0.241156, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_56ti3"]
+gradient = SubResource("Gradient_0fepv")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d76q"]
-size = Vector2(2, 20)
+size = Vector2(3, 20)
 
 [node name="Paddle" type="AnimatableBody2D"]
 collision_layer = 3
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_pinrn")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1.0
-offset_top = -10.0
-offset_right = 1.0
-offset_bottom = 10.0
+[node name="MotionBlurComponent" type="Node2D" parent="."]
+script = ExtResource("2_0fepv")
+copy_object_path = NodePath("../GFX")
+trail_count = 3
+fade_amount = 0.5
+initial_scale_amount = 1.2
+scale_amount = 1.2
+offset = 4
+metadata/_custom_type_script = "uid://h6e7sb54mdpf"
+
+[node name="GFX" type="Polygon2D" parent="."]
+texture = SubResource("GradientTexture1D_56ti3")
+polygon = PackedVector2Array(-1, -10, 2, -10, 2, 10, -1, 10)
+uv = PackedVector2Array(0.0738397, 0.939323, 0.0738395, 0.0334314, 255.986, 0.0684929, 256.026, 1.05272)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_1d76q")
 
 [node name="PlayerInput" type="Node" parent="."]

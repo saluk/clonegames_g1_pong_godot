@@ -7,7 +7,7 @@ func _ready() -> void:
 	focus_exited.connect(exit_focus)
 	
 func enter_focus() -> void:
-	print("enter")
+	pass
 	
 func exit_focus() -> void:
 	pass

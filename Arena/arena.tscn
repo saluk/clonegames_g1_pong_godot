@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdxx7rd77mrn2"]
+[gd_scene load_steps=11 format=3 uid="uid://bdxx7rd77mrn2"]
 
 [ext_resource type="PackedScene" uid="uid://gbuh3dmybp6t" path="res://Arena/ball.tscn" id="1_ddjon"]
 [ext_resource type="Script" uid="uid://bx6bh3tsk2jqc" path="res://Effects/camera.gd" id="1_upiig"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bpojq407aran1" path="res://Arena/hotkeys.gd" id="5_uea7w"]
 [ext_resource type="PackedScene" uid="uid://c8nh6awwlaijd" path="res://Match/MatchManager.tscn" id="6_weid8"]
 [ext_resource type="PackedScene" uid="uid://ufujpspdg32u" path="res://UI/MatchUI.tscn" id="7_ts82m"]
+[ext_resource type="PackedScene" uid="uid://c0nsxti2yo7nf" path="res://Arena/divider.tscn" id="8_o3erf"]
 
 [sub_resource type="Environment" id="Environment_ddjon"]
 background_mode = 3
@@ -22,11 +23,25 @@ offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
+[node name="Divider" parent="." instance=ExtResource("8_o3erf")]
+collision_layer = 0
+
+[node name="Paddles" type="Node2D" parent="."]
+
+[node name="Paddle1" parent="Paddles" instance=ExtResource("3_sswsf")]
+position = Vector2(-60, 0)
+
+[node name="Paddle2" parent="Paddles" instance=ExtResource("3_sswsf")]
+position = Vector2(60, 0)
+
+[node name="PlayerInput" parent="Paddles/Paddle2" index="3"]
+player = "P2"
+
 [node name="WallTop" parent="." instance=ExtResource("1_v8uor")]
 position = Vector2(0, -40)
 
 [node name="WallBottom" parent="." instance=ExtResource("1_v8uor")]
-position = Vector2(0, 41)
+position = Vector2(0, 40)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
@@ -40,18 +55,6 @@ script = ExtResource("1_upiig")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ddjon")
 compositor = SubResource("Compositor_upiig")
-
-[node name="Paddle1" parent="." instance=ExtResource("3_sswsf")]
-position = Vector2(-60, 0)
-
-[node name="PlayerInput" parent="Paddle1" index="2"]
-player = "P1"
-
-[node name="Paddle2" parent="." instance=ExtResource("3_sswsf")]
-position = Vector2(60, 0)
-
-[node name="PlayerInput" parent="Paddle2" index="2"]
-player = "P2"
 
 [node name="Hotkeys" type="Node" parent="."]
 process_mode = 3
@@ -74,5 +77,5 @@ offset_top = -37.0
 offset_right = 40.0
 offset_bottom = 13.0
 
-[editable path="Paddle1"]
-[editable path="Paddle2"]
+[editable path="Paddles/Paddle1"]
+[editable path="Paddles/Paddle2"]
