@@ -1,5 +1,7 @@
 extends Node
 
+var MOVE_MODE := "other"
+
 @onready var parent:AnimatableBody2D = get_parent()
 @onready var collisionshape:CollisionShape2D = parent.get_node("CollisionShape2D")
 
@@ -31,11 +33,6 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(dt: float) -> void:
 	var move_vel:Vector2 = Vector2(0,0)+Vector2(0,mouse_move.y)
-	
-	if Input.is_action_pressed(player + " up"):
-		move_vel.y -= speed * dt
-	if Input.is_action_pressed(player + " down"):
-		move_vel.y += speed * dt
 		
 	if is_touched:
 		rotation += min(mouse_move.x * 0.1, 1.0)
@@ -46,6 +43,15 @@ func _physics_process(dt: float) -> void:
 			rotation -= dt*rotation_speed
 		else:
 			rotation = lerp(rotation, 0.0, 0.1)
+
+	if Input.is_action_pressed(player + " up"):
+		move_vel.y -= speed * dt
+		if MOVE_MODE == "updown":
+			rotation -= dt*rotation_speed *4
+	if Input.is_action_pressed(player + " down"):
+		move_vel.y += speed * dt
+		if MOVE_MODE == "updown":
+			rotation += dt*rotation_speed * 4
 
 	if rotation > max_rotation:
 		rotation = max_rotation
