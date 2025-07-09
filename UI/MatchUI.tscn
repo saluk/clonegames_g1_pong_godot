@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ufujpspdg32u"]
+[gd_scene load_steps=5 format=3 uid="uid://ufujpspdg32u"]
 
 [ext_resource type="Script" uid="uid://ba5g55prdmk4x" path="res://UI/match_ui.gd" id="1_3kbxo"]
+[ext_resource type="AudioStream" uid="uid://bkxy0iqii8v4s" path="res://Sound/whiff.wav" id="2_b1w1r"]
+[ext_resource type="AudioStream" uid="uid://0kmxl6wu66nh" path="res://Sound/gameover.wav" id="3_ekg4d"]
+[ext_resource type="AudioStream" uid="uid://d3c4x35hv4ac6" path="res://Sound/gameover2.wav" id="4_uetpe"]
 
 [node name="MatchUi" type="Control"]
 process_mode = 3
@@ -28,11 +31,18 @@ layout_mode = 2
 size_flags_horizontal = 2
 text = "0"
 
+[node name="whiff" type="AudioStreamPlayer2D" parent="HSplitContainer/Player1Score"]
+stream = ExtResource("2_b1w1r")
+
 [node name="Player2Score" type="Label" parent="HSplitContainer" groups=["player2score"]]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "0"
 horizontal_alignment = 2
+
+[node name="whiff2" type="AudioStreamPlayer2D" parent="HSplitContainer/Player2Score"]
+position = Vector2(-1143, 0)
+stream = ExtResource("2_b1w1r")
 
 [node name="Anims" type="Control" parent="." groups=["anims"]]
 anchors_preset = 0
@@ -66,3 +76,11 @@ initial_velocity_min = 30.0
 initial_velocity_max = 130.0
 linear_accel_min = -8.09
 linear_accel_max = 20.81
+
+[node name="goodwin" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_ekg4d")
+
+[node name="badwin" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_uetpe")

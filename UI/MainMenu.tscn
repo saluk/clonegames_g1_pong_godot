@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cds1ci3254gvk"]
+[gd_scene load_steps=5 format=3 uid="uid://cds1ci3254gvk"]
 
 [ext_resource type="Theme" uid="uid://cfesykpkt6hh7" path="res://UI/lowres.tres" id="1_b37jj"]
 [ext_resource type="Script" uid="uid://bktfcd7v2mtak" path="res://UI/main_menu.gd" id="1_uahxu"]
+[ext_resource type="AudioStream" uid="uid://0fs7teo2qj2x" path="res://Sound/pongtry1.wav" id="3_8aown"]
+[ext_resource type="Script" uid="uid://dnmdau2dh2pl3" path="res://Util/audio_player_extra.gd" id="4_t6syg"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -30,3 +32,9 @@ offset_bottom = 100.0
 [node name="buttons" type="VBoxContainer" parent="CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8aown")
+autoplay = true
+script = ExtResource("4_t6syg")
+loop = true

@@ -21,6 +21,7 @@ func update_scores(score_values):
 			update_score(scores[i], score_values[i])
 			
 func update_score(score_ob:Label, value:int):
+	score_ob.get_child(0).play()
 	var old_text = score_ob.text
 	score_ob.text = str(value)
 	var t:Timer = Timer.new()

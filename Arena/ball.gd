@@ -1,9 +1,10 @@
 extends RigidBody2D
 
-@export var launch_speed := 1.0
+@export var launch_speed := 50.0
 @export var min_velocity := 25.0
-@export var min_x_velocity := 10.0
-@export var max_velocity := 100.0
+@export var min_x_velocity := 25.0
+@export var max_velocity := 200.0
+
 
 var detect_score := true
 
@@ -13,6 +14,13 @@ func _ready():
 			move_to_center()
 			detect_score = true
 	)
+	body_entered.connect(detect_hit)
+	%movement.finished.connect(movement_sound)
+	movement_sound()
+	
+func _process(dt:float)->void:
+	%movement.volume_db = linear_velocity.length() / 100.0 * 2.0 + randf_range(-12.0, -8.0)
+	%movement.pitch_scale = linear_velocity.length() / 100.0 * 1.0 + randf_range(0.0, 0.4)
 	
 func move_to_center():
 	position = Vector2(0,0)
@@ -26,8 +34,14 @@ func _physics_process(dt: float) -> void:
 	if detect_score and (position.x < -70 or position.x > 70):
 		detect_score = false
 		EventManager.ball_off_screen.emit(position.x)
+	if linear_velocity.length() >= max_velocity:
+		modulate.g = 0.0
+		modulate.b = 0.0
+	else:
+		modulate.g = 1.0
+		modulate.b = 1.0
 		
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+#func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if linear_velocity.length() > max_velocity:
 		apply_impulse(-linear_velocity + linear_velocity.normalized()*max_velocity)
 	if abs(linear_velocity.x) < min_x_velocity:
@@ -35,5 +49,16 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if linear_velocity.length() < min_velocity:
 		apply_impulse(-linear_velocity + linear_velocity.normalized()*min_velocity)
 		
-func launch():
-	apply_central_impulse(Vector2(0,1).rotated(randf_range(0,359)) * launch_speed)
+func detect_hit(body) -> void:
+	if body is Paddle:
+		%blip7.play()
+	else:
+		%blip7wall.play()
+		
+func launch() -> void:
+	apply_central_impulse(Vector2(0,1).rotated(deg_to_rad(randf_range(45,120))) * launch_speed * randi_range(-1,1))
+
+func movement_sound() -> void:
+	var wait:float = randf_range(0.0, 0.05)
+	await get_tree().create_timer(wait).timeout
+	%movement.play()

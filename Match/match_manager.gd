@@ -26,8 +26,13 @@ func add_score(player) -> void:
 	EventManager.score_update.emit(score)
 	if score[player] >= play_to_points:
 		is_won = true
+		winsounds()
 		get_tree().paused = true
 		EventManager.game_won.emit(player)
+		
+func winsounds() -> void:
+	%goodwin.play()
+	%badwin.play()
 
 func rematch() -> void:
 	get_tree().paused = false

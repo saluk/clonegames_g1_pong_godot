@@ -1,18 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://ccsuls3freng4"]
 
 [ext_resource type="Script" uid="uid://cp0rwjyq7ioco" path="res://Arena/player_controls.gd" id="1_pinrn"]
+[ext_resource type="Script" uid="uid://cl080posx1t0l" path="res://Arena/paddle.gd" id="1_vuvac"]
 [ext_resource type="Script" uid="uid://h6e7sb54mdpf" path="res://Effects/motion_blur_component.gd" id="2_0fepv"]
+[ext_resource type="Texture2D" uid="uid://bpau7le8vehlq" path="res://Arena/paddle.png" id="2_56ti3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pinrn"]
 friction = 0.0
 bounce = 1.0
-
-[sub_resource type="Gradient" id="Gradient_0fepv"]
-offsets = PackedFloat32Array(0, 0.2, 0.813793, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.299547, 0.299547, 0.299547, 1, 0.241156, 0.241156, 0.241156, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_56ti3"]
-gradient = SubResource("Gradient_0fepv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d76q"]
 size = Vector2(3, 20)
@@ -21,21 +16,22 @@ size = Vector2(3, 20)
 collision_layer = 3
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_pinrn")
+script = ExtResource("1_vuvac")
 
 [node name="MotionBlurComponent" type="Node2D" parent="."]
 script = ExtResource("2_0fepv")
 copy_object_path = NodePath("../GFX")
-trail_count = 3
+trail_count = 6
 fade_amount = 0.5
 initial_scale_amount = 1.2
 scale_amount = 1.2
-offset = 4
+offset = 2
 metadata/_custom_type_script = "uid://h6e7sb54mdpf"
 
 [node name="GFX" type="Polygon2D" parent="."]
-texture = SubResource("GradientTexture1D_56ti3")
+texture = ExtResource("2_56ti3")
 polygon = PackedVector2Array(-1, -10, 2, -10, 2, 10, -1, 10)
-uv = PackedVector2Array(0.0738397, 0.939323, 0.0738395, 0.0334314, 255.986, 0.0684929, 256.026, 1.05272)
+uv = PackedVector2Array(3, 20, 7.78586e-07, 20, -7.19912e-07, -6.79865e-08, 3, -8.9407e-08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
