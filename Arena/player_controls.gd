@@ -65,5 +65,7 @@ func _physics_process(dt: float) -> void:
 		new_pos.y = min_y
 	var transform := Transform2D(rotation, new_pos)
 	parent.transform = transform
+	parent.get_node("GFX").global_rotation = int(rotation*3.0)/3.0
+	
 
 	mouse_move = Vector2()
