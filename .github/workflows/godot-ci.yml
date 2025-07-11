@@ -36,6 +36,15 @@ jobs:
         with:
           name: windows
           path: build/windows
+      - name: Publish to itch 
+        uses: Ayowel/butler-to-itch@v1
+        with:
+          butler_key: ${{ secrets.BUTLER_API_KEY }}
+          itch_user: saluk
+          itch_game: g1pong
+          version: ${{ github.ref_name }}
+          files: |
+                    windows build/windows
 
   export-linux:
     name: Linux Export
@@ -62,6 +71,15 @@ jobs:
         with:
           name: linux
           path: build/linux
+      - name: Publish to itch 
+        uses: Ayowel/butler-to-itch@v1
+        with:
+          butler_key: ${{ secrets.BUTLER_API_KEY }}
+          itch_user: saluk
+          itch_game: g1pong
+          version: ${{ github.ref_name }}
+          files: |
+                    linux build/linux
 
   export-web:
     name: Web Export
@@ -131,3 +149,12 @@ jobs:
         with:
           name: mac
           path: build/mac
+      - name: Publish to itch 
+        uses: Ayowel/butler-to-itch@v1
+        with:
+          butler_key: ${{ secrets.BUTLER_API_KEY }}
+          itch_user: saluk
+          itch_game: g1pong
+          version: ${{ github.ref_name }}
+          files: |
+                    mac build/mac
