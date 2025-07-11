@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://q7g3nd5obb81"]
+
+[ext_resource type="Script" uid="uid://c2eumi0gvli13" path="res://Effects/bounceglow.gd" id="1_utxwu"]
+[ext_resource type="Script" uid="uid://h6e7sb54mdpf" path="res://Effects/motion_blur_component.gd" id="2_c42cw"]
+
+[node name="BounceGlow" type="Node2D"]
+visible = false
+script = ExtResource("1_utxwu")
+move_speed = 15
+grow_speed = 10
+fade_speed = -4
+
+[node name="MotionBlurComponent" type="Node2D" parent="."]
+script = ExtResource("2_c42cw")
+copy_object_path = NodePath("../GFX")
+trail_count = 6
+fade_amount = 0.5
+initial_scale_amount = 1.2
+scale_amount = 1.2
+offset = 2
+metadata/_custom_type_script = "uid://h6e7sb54mdpf"
+
+[node name="GFX" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -4, 1, -4, 1, 4, 0, 4)
+uv = PackedVector2Array(3, 20, 7.78586e-07, 20, -7.19912e-07, -6.79865e-08, 3, -8.9407e-08)

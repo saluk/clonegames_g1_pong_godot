@@ -5,7 +5,6 @@ extends RigidBody2D
 @export var min_x_velocity := 25.0
 @export var max_velocity := 200.0
 
-
 var detect_score := true
 
 func _ready():
@@ -52,6 +51,7 @@ func _physics_process(dt: float) -> void:
 func detect_hit(body) -> void:
 	if body is Paddle:
 		%blip7.play()
+		body.show_bounce_glow()
 	else:
 		%blip7wall.play()
 		

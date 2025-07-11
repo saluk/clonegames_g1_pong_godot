@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccsuls3freng4"]
+[gd_scene load_steps=8 format=3 uid="uid://ccsuls3freng4"]
 
 [ext_resource type="Script" uid="uid://cp0rwjyq7ioco" path="res://Arena/player_controls.gd" id="1_pinrn"]
 [ext_resource type="Script" uid="uid://cl080posx1t0l" path="res://Arena/paddle.gd" id="1_vuvac"]
 [ext_resource type="Script" uid="uid://h6e7sb54mdpf" path="res://Effects/motion_blur_component.gd" id="2_0fepv"]
 [ext_resource type="Texture2D" uid="uid://bpau7le8vehlq" path="res://Arena/paddle.png" id="2_56ti3"]
+[ext_resource type="PackedScene" uid="uid://q7g3nd5obb81" path="res://Effects/bounceglow.tscn" id="5_olbsd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pinrn"]
 friction = 0.0
@@ -28,6 +29,16 @@ scale_amount = 1.2
 offset = 2
 metadata/_custom_type_script = "uid://h6e7sb54mdpf"
 
+[node name="MotionBlurComponent2" type="Node2D" parent="."]
+script = ExtResource("2_0fepv")
+copy_object_path = NodePath("../BounceGlow")
+trail_count = 6
+fade_amount = 0.5
+initial_scale_amount = 1.2
+scale_amount = 1.2
+offset = 2
+metadata/_custom_type_script = "uid://h6e7sb54mdpf"
+
 [node name="GFX" type="Polygon2D" parent="."]
 texture = ExtResource("2_56ti3")
 polygon = PackedVector2Array(-1, -10, 2, -10, 2, 10, -1, 10)
@@ -39,3 +50,5 @@ shape = SubResource("RectangleShape2D_1d76q")
 
 [node name="PlayerInput" type="Node" parent="."]
 script = ExtResource("1_pinrn")
+
+[node name="BounceGlow" parent="." instance=ExtResource("5_olbsd")]
