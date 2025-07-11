@@ -88,9 +88,9 @@ jobs:
         with:
           name: web
           path: build/web
-      - name: Install rsync 📚
-        run: |
-          apt-get update && apt-get install -y rsync
+      # - name: Install rsync 📚
+      #   run: |
+      #     apt-get update && apt-get install -y rsync
       - name: Publish to itch 
         uses: Ayowel/butler-to-itch@v1
         with:
@@ -99,7 +99,7 @@ jobs:
           itch_game: g1pong
           version: ${{ github.ref_name }}
           files: |
-                    exports/*
+                    Exports/*
       # - name: Deploy to GitHub Pages 🚀
       #   uses: JamesIves/github-pages-deploy-action@releases/v4
       #   with:
