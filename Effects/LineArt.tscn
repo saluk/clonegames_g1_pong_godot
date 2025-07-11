@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://uxpj31qciw3t"]
+
+[ext_resource type="Script" uid="uid://dqad2ddilv545" path="res://Effects/line_art.gd" id="1_8xj81"]
+
+[node name="LineArt" type="Node2D"]
+script = ExtResource("1_8xj81")
