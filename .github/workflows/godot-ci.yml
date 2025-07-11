@@ -92,14 +92,14 @@ jobs:
         run: |
           apt-get update && apt-get install -y rsync
       - name: Publish to itch 
-        uses: Oval-Tutu/publish-to-itch-with-butler@v1.0.0
+        uses: Ayowel/butler-to-itch@v1
         with:
-          api-key: ${{ secrets.BUTLER_API_KEY }}
+          butler_key: ${{ secrets.BUTLER_API_KEY }}
           itch_user: saluk
           itch_game: g1pong
-          channel: html
-          package: ./build/web/
-          version: 1.0.0
+          version: ${{ github.ref_name }}
+          files: |
+                    exports/*
       # - name: Deploy to GitHub Pages 🚀
       #   uses: JamesIves/github-pages-deploy-action@releases/v4
       #   with:
