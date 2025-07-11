@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdxx7rd77mrn2"]
+[gd_scene load_steps=13 format=3 uid="uid://bdxx7rd77mrn2"]
 
 [ext_resource type="PackedScene" uid="uid://gbuh3dmybp6t" path="res://Arena/ball.tscn" id="1_ddjon"]
 [ext_resource type="Script" uid="uid://bx6bh3tsk2jqc" path="res://Effects/camera.gd" id="1_upiig"]
@@ -8,11 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://c8nh6awwlaijd" path="res://Match/MatchManager.tscn" id="6_weid8"]
 [ext_resource type="PackedScene" uid="uid://ufujpspdg32u" path="res://UI/MatchUI.tscn" id="7_ts82m"]
 [ext_resource type="PackedScene" uid="uid://c0nsxti2yo7nf" path="res://Arena/divider.tscn" id="8_o3erf"]
+[ext_resource type="Shader" uid="uid://doci0vxq8fpq3" path="res://Effects/screenshader1.gdshader" id="9_rirfp"]
 
 [sub_resource type="Environment" id="Environment_ddjon"]
 background_mode = 3
 
 [sub_resource type="Compositor" id="Compositor_upiig"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m3njq"]
+shader = ExtResource("9_rirfp")
+shader_parameter/hpass = 0.4
+shader_parameter/vpass = 0.4
+shader_parameter/radius = 10
 
 [node name="Arena" type="Node2D"]
 
@@ -31,11 +38,19 @@ collision_layer = 0
 [node name="Paddle1" parent="Paddles" instance=ExtResource("3_sswsf")]
 position = Vector2(-60, 0)
 
+[node name="BounceGlow" parent="Paddles/Paddle1" index="5"]
+visible = true
+position = Vector2(1, 0)
+
 [node name="Paddle2" parent="Paddles" instance=ExtResource("3_sswsf")]
 position = Vector2(60, 0)
 
-[node name="PlayerInput" parent="Paddles/Paddle2" index="3"]
+[node name="PlayerInput" parent="Paddles/Paddle2" index="4"]
 player = "P2"
+
+[node name="BounceGlow" parent="Paddles/Paddle2" index="5"]
+rotation = -3.14159
+move_speed = -10
 
 [node name="WallTop" parent="." instance=ExtResource("1_v8uor")]
 position = Vector2(0, -40)
@@ -76,6 +91,16 @@ offset_left = -80.0
 offset_top = -37.0
 offset_right = 40.0
 offset_bottom = 13.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_m3njq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [editable path="Paddles/Paddle1"]
 [editable path="Paddles/Paddle2"]

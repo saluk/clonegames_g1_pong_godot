@@ -22,8 +22,11 @@ ScreenManager="*res://Globals/ScreenManager.tscn"
 
 [display]
 
+window/size/viewport_width=198
+window/size/viewport_height=108
+window/size/window_width_override=640
+window/size/window_height_override=480
 window/stretch/mode="viewport"
-window/stretch/scale=7.0
 window/stretch/scale_mode="integer"
 
 [gui]
@@ -117,3 +120,6 @@ pause={
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
+viewport/hdr_2d=true
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
