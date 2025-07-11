@@ -92,7 +92,7 @@ jobs:
         run: |
           apt-get update && apt-get install -y rsync
       - name: Publish to itch 
-        uses: Oval-Tutu/publish-to-itch-with-butler@v1
+        uses: Oval-Tutu/publish-to-itch-with-butler
         with:
           api-key: ${{ secrets.BUTLER_API_KEY }}
           itch_user: saluk
