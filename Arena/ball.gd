@@ -20,10 +20,14 @@ func _ready():
 func _process(dt:float)->void:
 	%movement.volume_db = linear_velocity.length() / 100.0 * 2.0 + randf_range(-12.0, -8.0)
 	%movement.pitch_scale = linear_velocity.length() / 100.0 * 1.0 + randf_range(0.0, 0.4)
+	Recordings.add_transform2d_event(self)
 	
 func move_to_center():
 	position = Vector2(0,0)
 	linear_velocity = Vector2(0,0)
+	sync_physics()
+
+func sync_physics():
 	var rid = get_rid()
 	PhysicsServer2D.body_set_state(rid, PhysicsServer2D.BODY_STATE_TRANSFORM, get_transform())
 

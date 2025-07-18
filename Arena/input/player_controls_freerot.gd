@@ -1,4 +1,4 @@
-extends Node
+extends PaddleController
 
 var MOVE_MODE := "other"
 
@@ -18,6 +18,7 @@ var is_touched = false
 var mouse_move = Vector2()
 
 func _input(event: InputEvent) -> void:
+	Recordings.add_input_event(event)
 	if event is InputEventMouseButton:
 		var click_pos:Vector2 = get_viewport().get_canvas_transform().affine_inverse() * event.position
 		var rect := collisionshape.shape.get_rect().grow(10)

@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccsuls3freng4"]
+[gd_scene load_steps=12 format=3 uid="uid://ccsuls3freng4"]
 
-[ext_resource type="Script" uid="uid://cp0rwjyq7ioco" path="res://Arena/player_controls.gd" id="1_pinrn"]
+[ext_resource type="Script" uid="uid://cp0rwjyq7ioco" path="res://Arena/input/player_controls_freerot.gd" id="1_pinrn"]
 [ext_resource type="Script" uid="uid://cl080posx1t0l" path="res://Arena/paddle.gd" id="1_vuvac"]
 [ext_resource type="Script" uid="uid://h6e7sb54mdpf" path="res://Effects/motion_blur_component.gd" id="2_0fepv"]
 [ext_resource type="Texture2D" uid="uid://bpau7le8vehlq" path="res://Arena/paddle.png" id="2_56ti3"]
 [ext_resource type="PackedScene" uid="uid://q7g3nd5obb81" path="res://Effects/bounceglow.tscn" id="5_olbsd"]
+[ext_resource type="Script" uid="uid://h441k5k0sxts" path="res://Arena/input/input_selector.gd" id="5_td1p8"]
+[ext_resource type="Script" uid="uid://dulseqy4786e7" path="res://Arena/input/player_controls_togglerot.gd" id="7_o47qf"]
+[ext_resource type="Script" uid="uid://dt724crhdsfy2" path="res://Arena/input/player_controls_freerot_no_lerp.gd" id="8_02gxf"]
+[ext_resource type="Script" uid="uid://ex2gn8qvacta" path="res://Arena/input/ai_controls.gd" id="9_7hqhq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pinrn"]
 friction = 0.0
@@ -48,7 +52,22 @@ uv = PackedVector2Array(3, 20, 7.78586e-07, 20, -7.19912e-07, -6.79865e-08, 3, -
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_1d76q")
 
-[node name="PlayerInput" type="Node" parent="."]
+[node name="BounceGlow" parent="." instance=ExtResource("5_olbsd")]
+
+[node name="InputSelector" type="Node" parent="." node_paths=PackedStringArray("current_mode")]
+script = ExtResource("5_td1p8")
+current_mode = NodePath("../player free rot")
+
+[node name="player free rot" type="Node" parent="."]
 script = ExtResource("1_pinrn")
 
-[node name="BounceGlow" parent="." instance=ExtResource("5_olbsd")]
+[node name="player toggle rot" type="Node" parent="."]
+script = ExtResource("7_o47qf")
+
+[node name="player free rot no lerp" type="Node" parent="."]
+script = ExtResource("8_02gxf")
+rotation_speed = 6.0
+
+[node name="ai controls" type="Node" parent="."]
+script = ExtResource("9_7hqhq")
+rotation_speed = 6.0

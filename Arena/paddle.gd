@@ -11,3 +11,6 @@ func show_bounce_glow():
 	await get_tree().create_timer(1.0).timeout
 	n.visible = false
 	n.set_process(false)
+	
+func _process(dt:float) -> void:
+	Recordings.add_transform2d_event(self, false)
