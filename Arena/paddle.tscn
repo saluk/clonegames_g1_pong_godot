@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccsuls3freng4"]
+[gd_scene load_steps=13 format=3 uid="uid://ccsuls3freng4"]
 
 [ext_resource type="Script" uid="uid://cp0rwjyq7ioco" path="res://Arena/input/player_controls_freerot.gd" id="1_pinrn"]
 [ext_resource type="Script" uid="uid://cl080posx1t0l" path="res://Arena/paddle.gd" id="1_vuvac"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dulseqy4786e7" path="res://Arena/input/player_controls_togglerot.gd" id="7_o47qf"]
 [ext_resource type="Script" uid="uid://dt724crhdsfy2" path="res://Arena/input/player_controls_freerot_no_lerp.gd" id="8_02gxf"]
 [ext_resource type="Script" uid="uid://ex2gn8qvacta" path="res://Arena/input/ai_controls.gd" id="9_7hqhq"]
+[ext_resource type="Script" uid="uid://confa7menbjms" path="res://Arena/input/player_controls_sideways.gd" id="9_qwk7n"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pinrn"]
 friction = 0.0
@@ -58,16 +59,32 @@ shape = SubResource("RectangleShape2D_1d76q")
 script = ExtResource("5_td1p8")
 current_mode = NodePath("../player free rot")
 
+[node name="InputLabel" type="Label" parent="InputSelector"]
+unique_name_in_owner = true
+offset_right = 11.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
+text = "1"
+
 [node name="player free rot" type="Node" parent="."]
 script = ExtResource("1_pinrn")
+label = "f"
 
 [node name="player toggle rot" type="Node" parent="."]
 script = ExtResource("7_o47qf")
+label = "T"
 
 [node name="player free rot no lerp" type="Node" parent="."]
 script = ExtResource("8_02gxf")
+label = "ff"
+rotation_speed = 6.0
+
+[node name="player sideways" type="Node" parent="."]
+script = ExtResource("9_qwk7n")
+label = "S"
 rotation_speed = 6.0
 
 [node name="ai controls" type="Node" parent="."]
 script = ExtResource("9_7hqhq")
+label = "a"
 rotation_speed = 6.0

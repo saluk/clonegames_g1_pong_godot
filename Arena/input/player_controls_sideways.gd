@@ -1,6 +1,5 @@
 extends PaddleController
 
-var MOVE_MODE := "other"
 @export var label:String
 
 @onready var parent:AnimatableBody2D = get_parent()
@@ -13,6 +12,9 @@ var MOVE_MODE := "other"
 @export var max_rotation := 1.0
 @export var min_y := -28
 @export var max_y := 28
+
+@onready var startx = parent.position.x
+@export var max_x_variation = 50
 
 var rotation := 0.0
 var is_touched = false
@@ -35,36 +37,33 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(dt: float) -> void:
 	var move_vel:Vector2 = Vector2(0,0)+Vector2(0,mouse_move.y)
-		
-	if is_touched:
-		rotation += min(mouse_move.x * 0.1, 1.0)
-	else:
-		if Input.is_action_pressed(player + " right"):
-			rotation += dt*rotation_speed
-		elif Input.is_action_pressed(player + " left"):
-			rotation -= dt*rotation_speed
-		else:
-			rotation = lerp(rotation, 0.0, 0.1)
+	
+	if Input.is_action_pressed(player + " right"):
+		move_vel.x += speed * dt
+	elif Input.is_action_pressed(player + " left"):
+		move_vel.x -= speed * dt
 
 	if Input.is_action_pressed(player + " up"):
 		move_vel.y -= speed * dt
-		if MOVE_MODE == "updown":
-			rotation -= dt*rotation_speed *4
 	if Input.is_action_pressed(player + " down"):
 		move_vel.y += speed * dt
-		if MOVE_MODE == "updown":
-			rotation += dt*rotation_speed * 4
-
-	if rotation > max_rotation:
-		rotation = max_rotation
-	if rotation < -max_rotation:
-		rotation = -max_rotation
 
 	var new_pos = parent.position+move_vel
 	if new_pos.y > max_y:
 		new_pos.y = max_y
 	if new_pos.y < min_y:
 		new_pos.y = min_y
+	
+	if startx > 0:
+		if new_pos.x < startx-max_x_variation:
+			new_pos.x = startx-max_x_variation
+		if new_pos.x > startx:
+			new_pos.x = startx
+	else:
+		if new_pos.x > startx+max_x_variation:
+			new_pos.x = startx+max_x_variation
+		if new_pos.x < startx:
+			new_pos.x = startx
 	var transform := Transform2D(rotation, new_pos)
 	parent.transform = transform
 	parent.get_node("GFX").global_rotation = int(rotation*3.0)/3.0
