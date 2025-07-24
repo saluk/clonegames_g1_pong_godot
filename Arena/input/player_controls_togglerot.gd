@@ -3,8 +3,6 @@ extends PaddleController
 @onready var parent:AnimatableBody2D = get_parent()
 @onready var collisionshape:CollisionShape2D = parent.get_node("CollisionShape2D")
 
-@export var label:String
-
 # TODO move properties to paddle.gd
 @export var player:String = "P1"
 @export var speed := 100.0

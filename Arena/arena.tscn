@@ -42,7 +42,7 @@ position = Vector2(-60, 0)
 visible = true
 position = Vector2(1, 0)
 
-[node name="Paddle2" parent="Paddles" instance=ExtResource("3_sswsf")]
+[node name="Paddle2" parent="Paddles" groups=["player2paddle"] instance=ExtResource("3_sswsf")]
 position = Vector2(60, 0)
 
 [node name="BounceGlow" parent="Paddles/Paddle2" index="4"]

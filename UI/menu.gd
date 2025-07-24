@@ -31,6 +31,7 @@ func init_menu() -> void:
 
 		var button_text
 		var method_name
+		var method_callable
 		var submenu
 		if item is String:
 			button_text = item
@@ -39,6 +40,8 @@ func init_menu() -> void:
 			button_text = item[0]
 			if item[1] is String:
 				method_name = item[1]
+			elif item[1] is Callable:
+				method_callable = item[1]
 			else:
 				submenu = item[1]
 
@@ -46,6 +49,8 @@ func init_menu() -> void:
 		if method_name:
 			if has_method(method_name):
 				button.pressed.connect(func(): call(method_name))
+		elif method_callable:
+			button.pressed.connect(method_callable)
 		elif submenu:
 			button.pressed.connect(func(): 
 				var new_menu = []

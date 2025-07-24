@@ -2,6 +2,11 @@
 
 extends Node
 
+# Matches/ai
+signal start_new_match(players, goals)
+signal enable_ai
+signal disable_ai
+
 # Game state
 signal ball_off_screen(xpos)
 signal reset_ball

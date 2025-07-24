@@ -76,15 +76,16 @@ label = "T"
 
 [node name="player free rot no lerp" type="Node" parent="."]
 script = ExtResource("8_02gxf")
-label = "ff"
 rotation_speed = 6.0
+label = "ff"
 
 [node name="player sideways" type="Node" parent="."]
 script = ExtResource("9_qwk7n")
-label = "S"
 rotation_speed = 6.0
+label = "S"
 
 [node name="ai controls" type="Node" parent="."]
 script = ExtResource("9_7hqhq")
-label = "a"
 rotation_speed = 6.0
+label = "a"
+is_ai = true

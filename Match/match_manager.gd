@@ -5,9 +5,17 @@ var score:Array[int] = [0, 0]
 var is_won = false
 
 func _ready() -> void:
+	EventManager.start_new_match.connect(start_new_match)
 	EventManager.score_update.emit(score)
 	EventManager.ball_off_screen.connect(player_scored)
 	EventManager.rematch.connect(rematch)
+	
+func start_new_match(players:int, goals:int):
+	if players == 1:
+		EventManager.enable_ai.emit()
+	else:
+		EventManager.disable_ai.emit()
+	play_to_points = goals
 	
 func player_scored(xpos) -> void:
 	var player:int = 0 if xpos > 0 else 1

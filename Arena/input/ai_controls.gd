@@ -1,7 +1,5 @@
 extends PaddleController
 
-@export var label:String
-
 @onready var parent:AnimatableBody2D = get_parent()
 @onready var collisionshape:CollisionShape2D = parent.get_node("CollisionShape2D")
 
