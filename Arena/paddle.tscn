@@ -1,5 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://ccsuls3freng4"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://bbhgaun0ksqx2" path="res://Arena/bounce_physics.tres" id="1_5ykb6"]
 [ext_resource type="Script" uid="uid://cp0rwjyq7ioco" path="res://Arena/input/player_controls_freerot.gd" id="1_pinrn"]
 [ext_resource type="Script" uid="uid://cl080posx1t0l" path="res://Arena/paddle.gd" id="1_vuvac"]
 [ext_resource type="Script" uid="uid://h6e7sb54mdpf" path="res://Effects/motion_blur_component.gd" id="2_0fepv"]
@@ -11,17 +12,13 @@
 [ext_resource type="Script" uid="uid://ex2gn8qvacta" path="res://Arena/input/ai_controls.gd" id="9_7hqhq"]
 [ext_resource type="Script" uid="uid://confa7menbjms" path="res://Arena/input/player_controls_sideways.gd" id="9_qwk7n"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pinrn"]
-friction = 0.0
-bounce = 1.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d76q"]
 size = Vector2(3, 20)
 
 [node name="Paddle" type="AnimatableBody2D"]
 collision_layer = 3
 collision_mask = 2
-physics_material_override = SubResource("PhysicsMaterial_pinrn")
+physics_material_override = ExtResource("1_5ykb6")
 script = ExtResource("1_vuvac")
 
 [node name="MotionBlurComponent" type="Node2D" parent="."]

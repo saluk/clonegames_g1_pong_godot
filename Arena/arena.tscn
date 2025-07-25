@@ -62,11 +62,25 @@ player = "P2"
 [node name="player free rot no lerp" parent="Paddles/Paddle2" index="8"]
 player = "P2"
 
-[node name="WallTop" parent="." instance=ExtResource("1_v8uor")]
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="WallTop" parent="Walls" instance=ExtResource("1_v8uor")]
 position = Vector2(0, -40)
 
-[node name="WallBottom" parent="." instance=ExtResource("1_v8uor")]
+[node name="WallBottom" parent="Walls" instance=ExtResource("1_v8uor")]
 position = Vector2(0, 40)
+
+[node name="Guardrails" type="Node2D" parent="Walls"]
+process_mode = 4
+visible = false
+
+[node name="GuardR" parent="Walls/Guardrails" instance=ExtResource("1_v8uor")]
+position = Vector2(54, -10)
+rotation = 1.57079
+
+[node name="GuardL" parent="Walls/Guardrails" instance=ExtResource("1_v8uor")]
+position = Vector2(-54, -14)
+rotation = 1.57079
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false

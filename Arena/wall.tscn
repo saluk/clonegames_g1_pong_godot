@@ -1,8 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bktw3kd53ogei"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6y1j7"]
-friction = 0.0
-bounce = 1.0
+[ext_resource type="PhysicsMaterial" uid="uid://bbhgaun0ksqx2" path="res://Arena/bounce_physics.tres" id="1_ldp5p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6y1j7"]
 size = Vector2(150, 2)
@@ -17,7 +15,7 @@ offset_bottom = 1.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 3
-physics_material_override = SubResource("PhysicsMaterial_6y1j7")
+physics_material_override = ExtResource("1_ldp5p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_6y1j7")

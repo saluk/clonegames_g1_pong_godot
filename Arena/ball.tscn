@@ -1,27 +1,26 @@
 [gd_scene load_steps=9 format=3 uid="uid://gbuh3dmybp6t"]
 
 [ext_resource type="Script" uid="uid://bsx20sqd6gkxg" path="res://Arena/ball.gd" id="1_7mx2m"]
+[ext_resource type="PhysicsMaterial" uid="uid://bbhgaun0ksqx2" path="res://Arena/bounce_physics.tres" id="1_yf1uq"]
 [ext_resource type="Script" uid="uid://66xevrnhcpbe" path="res://Arena/ball_response.gd" id="2_updea"]
 [ext_resource type="Script" uid="uid://h6e7sb54mdpf" path="res://Effects/motion_blur_component.gd" id="3_xx4qm"]
 [ext_resource type="AudioStream" uid="uid://b4gxu3pdhk61n" path="res://Sound/Blip7.wav" id="4_kjynr"]
 [ext_resource type="AudioStream" uid="uid://dri80ps70vgy5" path="res://Sound/Blip7wall.wav" id="5_h7uqr"]
 [ext_resource type="AudioStream" uid="uid://d1ysxlcbkltuf" path="res://Sound/ballmove2.wav" id="6_pl24h"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kjynr"]
-friction = 0.0
-bounce = 1.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_kjynr"]
 radius = 2.0
 
 [node name="Ball" type="RigidBody2D"]
-physics_material_override = SubResource("PhysicsMaterial_kjynr")
+physics_material_override = ExtResource("1_yf1uq")
+gravity_scale = 0.0
 can_sleep = false
+lock_rotation = true
 custom_integrator = true
-continuous_cd = 1
 contact_monitor = true
 max_contacts_reported = 1
 linear_damp_mode = 1
+angular_damp_mode = 1
 script = ExtResource("1_7mx2m")
 
 [node name="MotionBlurComponent" type="Node2D" parent="."]
@@ -38,6 +37,7 @@ metadata/_custom_type_script = "uid://h6e7sb54mdpf"
 shape = SubResource("CircleShape2D_kjynr")
 
 [node name="Gfx" type="Polygon2D" parent="."]
+z_index = 1
 polygon = PackedVector2Array(1, -1, 1, 1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1)
 
 [node name="CollisionResponse" type="Node" parent="."]
@@ -60,3 +60,15 @@ unique_name_in_owner = true
 stream = ExtResource("6_pl24h")
 attenuation = 14.9285
 panning_strength = 3.0
+
+[node name="debug_velocity" type="Line2D" parent="."]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 0, 1)
+width = 1.5
+default_color = Color(0.38879, 0.722823, 0, 1)
+
+[node name="Label" type="Label" parent="debug_velocity"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 9
+text = "spd"

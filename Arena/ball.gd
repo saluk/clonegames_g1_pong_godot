@@ -43,8 +43,15 @@ func _physics_process(dt: float) -> void:
 	else:
 		modulate.g = 1.0
 		modulate.b = 1.0
+	# TODO this should be separate script
+	debug_velocity()
+	
+func debug_velocity():
+	%debug_velocity.points[1] = linear_velocity*0.25
+	%debug_velocity.global_rotation = 0
+	%debug_velocity.get_node("Label").text = str(linear_velocity.length())
 		
-#func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if linear_velocity.length() > max_velocity:
 		apply_impulse(-linear_velocity + linear_velocity.normalized()*max_velocity)
 	if abs(linear_velocity.x) < min_x_velocity:
@@ -60,6 +67,9 @@ func detect_hit(body) -> void:
 		%blip7wall.play()
 		
 func launch() -> void:
+	# TODO apply a standard initial force for testability
+	#apply_central_impulse(Vector2(0,1).rotated(deg_to_rad(45)) * launch_speed*3)
+	# After todo:
 	apply_central_impulse(Vector2(0,1).rotated(deg_to_rad(randf_range(45,120))) * launch_speed * randi_range(-1,1))
 
 func movement_sound() -> void:
