@@ -11,7 +11,7 @@ class_name MotionBlurComponent
 @export var initial_scale_amount:float = 0.8
 @export var scale_amount:float = 0.9
 var copy_object:Node
-@export var offset = 1
+@export var offset := 1
 
 var prev_pos:Array[Vector2]
 var prev_rot:Array[float]
@@ -26,7 +26,7 @@ func _ready() -> void:
 	copy.scale *= initial_scale_amount
 	add_child(copy)
 	if trail_count-1 > 0:
-		var next = MotionBlurComponent.new()
+		var next := MotionBlurComponent.new()
 		next.copy_object = copy
 		next.trail_count = trail_count - 1
 		next.offset = offset
@@ -35,7 +35,7 @@ func _ready() -> void:
 		next.scale_amount = scale_amount
 		add_child(next)
 	
-func _process(delta:float) -> void:
+func _process(_delta:float) -> void:
 	prev_pos.insert(0, copy_object.global_position)
 	prev_pos = prev_pos.slice(0,offset+1)
 	prev_rot.insert(0, copy_object.global_rotation)

@@ -1,11 +1,11 @@
 extends Control
 class_name Menu
 
-@onready var buttons = %buttons
-@onready var menu_title = %MenuTitle
+@onready var buttons:Node = %buttons
+@onready var menu_title:Node = %MenuTitle
 
 var menu_data:Array
-var button_class = Button
+var button_class:Object = Button
 var stack:Array
 
 func _init() -> void:
@@ -22,6 +22,7 @@ func init_menu() -> void:
 	N.empty(buttons)
 	var data:Array = stack[-1]
 	menu_title.text = data[0]
+	@warning_ignore("untyped_declaration")
 	for item in data.slice(1):
 		var button:Button
 		if button_class is PackedScene:
@@ -29,10 +30,10 @@ func init_menu() -> void:
 		else:
 			button = button_class.new()
 
-		var button_text
-		var method_name
-		var method_callable
-		var submenu
+		var button_text:String
+		var method_name:String
+		var method_callable:Callable
+		var submenu:Array
 		if item is String:
 			button_text = item
 			method_name = item
@@ -48,13 +49,14 @@ func init_menu() -> void:
 		button.text = button_text
 		if method_name:
 			if has_method(method_name):
-				button.pressed.connect(func(): call(method_name))
+				button.pressed.connect(func()->void: call(method_name))
 		elif method_callable:
 			button.pressed.connect(method_callable)
 		elif submenu:
-			button.pressed.connect(func(): 
-				var new_menu = []
+			button.pressed.connect(func()->void: 
+				var new_menu := []
 				new_menu.append(submenu[0])
+				@warning_ignore("untyped_declaration")
 				for subitem in submenu.slice(1):
 					new_menu.append(subitem)
 				new_menu.append(["<", "prev_menu"])

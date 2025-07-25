@@ -12,6 +12,6 @@ func rematch() -> void:
 	EventManager.rematch.emit()
 
 func main_menu() -> void:
-	var main_menu = load("res://UI/MainMenu.tscn")
+	var mm = load("res://UI/MainMenu.tscn")
 	get_tree().paused = false
-	get_tree().change_scene_to_packed(main_menu)
+	get_tree().change_scene_to_packed(mm)

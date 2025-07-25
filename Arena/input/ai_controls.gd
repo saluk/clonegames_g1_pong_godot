@@ -16,19 +16,20 @@ extends PaddleController
 var rotation := 0.0
 var target_rotation := max_rotation
 
-var is_touched = false
+var is_touched := false
 
-func toggle_rotation():
+func toggle_rotation()->void:
 	if target_rotation > 0:
 		target_rotation = -max_rotation
 	elif target_rotation < 0:
 		target_rotation = max_rotation
 
-func _physics_process(dt: float) -> void:
+# Rerouted _physics_process
+func controller_physics(dt: float) -> void:
 	var move_vel:Vector2 = Vector2(0,0)
 	
-	var should_toggle_rot = false
-	var target_y = get_tree().get_nodes_in_group("ball")[0].position.y
+	var should_toggle_rot := false
+	var target_y:float = get_tree().get_nodes_in_group("ball")[0].position.y
 	
 	if should_toggle_rot:
 		toggle_rotation()
@@ -45,7 +46,7 @@ func _physics_process(dt: float) -> void:
 	if rotation < -max_rotation:
 		rotation = -max_rotation
 
-	var new_pos = parent.position+move_vel
+	var new_pos := parent.position+move_vel
 	if new_pos.y > max_y:
 		new_pos.y = max_y
 	if new_pos.y < min_y:

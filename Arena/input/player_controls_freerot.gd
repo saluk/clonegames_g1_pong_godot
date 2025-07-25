@@ -14,11 +14,11 @@ var MOVE_MODE := "other"
 @export var max_y := 28
 
 var rotation := 0.0
-var is_touched = false
-var mouse_move = Vector2()
+var is_touched := false
+var mouse_move := Vector2()
 
-func _input(event: InputEvent) -> void:
-	Recordings.add_input_event(event)
+# Rerouted _input
+func controller_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var click_pos:Vector2 = get_viewport().get_canvas_transform().affine_inverse() * event.position
 		var rect := collisionshape.shape.get_rect().grow(10)
@@ -32,7 +32,8 @@ func _input(event: InputEvent) -> void:
 		if is_touched:
 			mouse_move = event.screen_relative / get_viewport().get_canvas_transform().get_scale()
 
-func _physics_process(dt: float) -> void:
+# Rerouted _physics_process
+func controller_physics(dt: float) -> void:
 	var move_vel:Vector2 = Vector2(0,0)+Vector2(0,mouse_move.y)
 		
 	if is_touched:
@@ -59,7 +60,7 @@ func _physics_process(dt: float) -> void:
 	if rotation < -max_rotation:
 		rotation = -max_rotation
 
-	var new_pos = parent.position+move_vel
+	var new_pos := parent.position+move_vel
 	if new_pos.y > max_y:
 		new_pos.y = max_y
 	if new_pos.y < min_y:

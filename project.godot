@@ -21,6 +21,10 @@ EventManager="*res://Globals/EventManager.tscn"
 ScreenManager="*res://Globals/ScreenManager.tscn"
 SceneManager="*res://Globals/SceneManager.tscn"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+
 [display]
 
 window/size/viewport_width=198
@@ -32,7 +36,7 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dictionary_inspector/plugin.cfg")
+enabled=PackedStringArray("res://addons/dictionary_inspector/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
 
 [gui]
 

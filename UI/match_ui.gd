@@ -1,13 +1,13 @@
 extends Control
 
-@onready var scores = [
+@onready var scores := [
 	get_tree().get_first_node_in_group("player1score"),
 	get_tree().get_first_node_in_group("player2score")
 ]
-@onready var anims = get_tree().get_first_node_in_group("anims")
-@onready var win = get_tree().get_first_node_in_group("win")
+@onready var anims := get_tree().get_first_node_in_group("anims")
+@onready var win := get_tree().get_first_node_in_group("win")
 
-var pause_menu_ui = null
+var pause_menu_ui:Node = null
 
 func _ready() -> void:
 	EventManager.score_update.connect(update_scores)
@@ -15,14 +15,14 @@ func _ready() -> void:
 	EventManager.pause_match.connect(pause_menu)
 	EventManager.resume_match.connect(resume_match)
 
-func update_scores(score_values):
+func update_scores(score_values:Array)->void:
 	for i in range(len(score_values)):
 		if scores[i].text != str(score_values[i]):
 			update_score(scores[i], score_values[i])
 			
-func update_score(score_ob:Label, value:int):
+func update_score(score_ob:Label, value:int)->void:
 	score_ob.get_child(0).play()
-	var old_text = score_ob.text
+	var old_text := score_ob.text
 	score_ob.text = str(value)
 	var t:Timer = Timer.new()
 	t.wait_time = 0.5
@@ -33,8 +33,8 @@ func update_score(score_ob:Label, value:int):
 	anims.add_child(t)
 	t.start()
 	l.global_position = score_ob.global_position
-	var launch_dir = Vector2.from_angle(randf()*360) * randf_range(150,200)
-	var angle_speed = randf_range(200, 400)
+	var launch_dir := Vector2.from_angle(randf()*360) * randf_range(150,200)
+	var angle_speed := randf_range(200, 400)
 	while t.time_left:
 		await get_tree().process_frame
 		l.position += launch_dir * get_process_delta_time()
@@ -42,7 +42,7 @@ func update_score(score_ob:Label, value:int):
 	anims.remove_child(l)
 	anims.remove_child(t)
 
-func show_win(player:int):
+func show_win(player:int)->void:
 	if pause_menu_ui:
 		remove_child(pause_menu_ui)
 	win.text = "Player "+str(player+1)+" won!"
