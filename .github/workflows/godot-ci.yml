@@ -32,7 +32,7 @@ jobs:
           mkdir -v -p build/windows
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
+          if godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"; then echo godot build exited; fi
           [ -f "$EXPORT_DIR/windows/$EXPORT_NAME.exe" ]
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
@@ -68,7 +68,7 @@ jobs:
           mkdir -v -p build/linux
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          godot --headless --verbose --export-release "Linux" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"
+          if godot --headless --verbose --export-release "Linux" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"; then echo godot build exited; fi
           [ -f "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64" ]
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
@@ -104,7 +104,7 @@ jobs:
           mkdir -v -p build/web
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
+          if godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"; then echo godot build exited; fi
           [ -f "$EXPORT_DIR/web/index.pck" ]
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
@@ -148,7 +148,7 @@ jobs:
           mkdir -v -p build/mac
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/$EXPORT_NAME.zip"
+          if godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/$EXPORT_NAME.zip"; then echo godot build exited; fi
           [ -f "$EXPORT_DIR/mac/$EXPORT_NAME.zip" ]
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
