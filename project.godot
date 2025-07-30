@@ -38,6 +38,10 @@ window/stretch/scale_mode="integer"
 
 enabled=PackedStringArray("res://addons/dictionary_inspector/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
 
+[global_group]
+
+debug_object=""
+
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false

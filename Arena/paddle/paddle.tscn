@@ -46,7 +46,7 @@ shape = SubResource("RectangleShape2D_1d76q")
 script = ExtResource("5_td1p8")
 current_mode = NodePath("../player free rot")
 
-[node name="InputLabel" type="Label" parent="InputSelector"]
+[node name="InputLabel" type="Label" parent="InputSelector" groups=["debug_object"]]
 unique_name_in_owner = true
 offset_right = 11.0
 offset_bottom = 23.0

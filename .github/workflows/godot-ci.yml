@@ -1,7 +1,7 @@
 name: "godot-ci export"
 on: 
   release:
-    types: [published, prereleased]
+    types: [published]
 
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
 
