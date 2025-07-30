@@ -3,6 +3,7 @@ extends Node
 var score:Array[int] = [0, 0]
 @export var play_to_points := 3
 var is_won := false
+var rematch_args:Array
 
 func _ready() -> void:
 	EventManager.start_new_match.connect(start_new_match)
@@ -11,6 +12,7 @@ func _ready() -> void:
 	EventManager.rematch.connect(rematch)
 	
 func start_new_match(players:int, goals:int)->void:
+	rematch_args = [players, goals]
 	if players == 1:
 		EventManager.enable_ai.emit()
 	else:
@@ -44,4 +46,8 @@ func winsounds() -> void:
 
 func rematch() -> void:
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	SceneManager.change_scene(
+		"res://Arena/arena.tscn", 
+		EventManager.start_new_match, 
+		rematch_args
+	)
