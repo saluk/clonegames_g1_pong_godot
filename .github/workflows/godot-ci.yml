@@ -33,6 +33,7 @@ jobs:
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
+          [ -f "$EXPORT_DIR/windows/$EXPORT_NAME.exe" ]
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -68,6 +69,7 @@ jobs:
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Linux" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"
+          [ -f "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64" ]
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -103,6 +105,7 @@ jobs:
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
+          [ -f "$EXPORT_DIR/web/index.pck" ]
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -146,6 +149,7 @@ jobs:
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/$EXPORT_NAME.zip"
+          [ -f "$EXPORT_DIR/mac/$EXPORT_NAME.zip" ]
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
