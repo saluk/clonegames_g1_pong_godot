@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://df3d0x87cxvoy"]
+
+[ext_resource type="Script" uid="uid://qnkhhieiyjpe" path="res://Globals/config/configuration_manager.gd" id="1_mlab4"]
+[ext_resource type="Script" uid="uid://gnt6lg776ai1" path="res://Globals/config/configuration_resource.gd" id="2_wr8pl"]
+
+[sub_resource type="Resource" id="Resource_p30dc"]
+script = ExtResource("2_wr8pl")
+show_debug = false
+metadata/_custom_type_script = "uid://gnt6lg776ai1"
+
+[node name="ConfigurationManager" type="Node"]
+script = ExtResource("1_mlab4")
+_configuration = SubResource("Resource_p30dc")

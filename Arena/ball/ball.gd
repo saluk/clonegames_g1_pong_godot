@@ -42,13 +42,6 @@ func _physics_process(_dt: float) -> void:
 	else:
 		modulate.g = 1.0
 		modulate.b = 1.0
-	# TODO this should be separate script
-	debug_velocity()
-	
-func debug_velocity()->void:
-	%debug_velocity.points[1] = linear_velocity*0.25
-	%debug_velocity.global_rotation = 0
-	%debug_velocity.get_node("Label").text = str(linear_velocity.length())
 		
 func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 	if linear_velocity.length() > max_velocity:
