@@ -39,7 +39,7 @@ func _ready()->void:
 
 func pick_valid_mode() -> void:
 	if inputs:
-		var target_name = Configuration.get_config_value("default_input_style")
+		var target_name:String = Configuration.get_config_value("default_input_style")
 		for inp in inputs:
 			if inp.name == target_name:
 				current_mode = inp

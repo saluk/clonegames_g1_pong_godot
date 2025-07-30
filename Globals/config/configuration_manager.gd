@@ -5,7 +5,7 @@ extends Node
 var run_on_changed:Array[Callable] = []
 
 func _ready() -> void:
-	SceneManager.scene_changed.connect(func(scene:String, sig:Signal, args:Array):
+	SceneManager.scene_changed.connect(func(_scene:String, _sig:Signal, _args:Array)->void:
 		trigger_updates()
 	)
 	run_on_changed += [
@@ -13,13 +13,14 @@ func _ready() -> void:
 	]
 	trigger_updates()
 	
-func trigger_updates():
+func trigger_updates()->void:
 	for f:Callable in run_on_changed:
 		f.call()
 	
-func set_config_value(key:String, value:Object):
+func set_config_value(key:String, value:Object)->void:
 	_configuration.set(key, value)
 	
+@warning_ignore("untyped_declaration")
 func get_config_value(key:String):
 	return _configuration.get(key)
 		

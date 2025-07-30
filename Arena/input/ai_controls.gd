@@ -11,6 +11,10 @@ extends PaddleController
 @export var min_y := -28
 @export var max_y := 28
 
+# AI props
+@export var prepare_to_launch_dist := 10.0
+@export var launch_dist := 5.0
+
 @export var rotation_lerp_weight := 0.3
 
 var rotation := 0.0
@@ -29,9 +33,30 @@ func controller_physics(dt: float) -> void:
 	var move_vel:Vector2 = Vector2(0,0)
 	
 	var should_toggle_rot := false
-	var target_y:float = get_tree().get_nodes_in_group("ball")[0].position.y
+	
+	# IF - the ball is close enough, determine the ideal launch for the ball
+	# if the ideal launch has not already happened, toggle rotation
+	
+	
+	var ball:RigidBody2D = get_tree().get_first_node_in_group("ball")
+	var target_y:float = ball.position.y
+	# +y velocity, +rot; -y velocity, -rot
+	var target_launch:int = int(ball.linear_velocity.y/ball.linear_velocity.y)
+	# we should be at -target_launch if ball is > 10 pixels away, and target_launch
+	# if ball is < 5 pixels away
+	if abs(ball.position.x - parent.position.x) > prepare_to_launch_dist:
+		if int(rotation/rotation) == target_launch:
+			should_toggle_rot = true
+	if abs(ball.position.x - parent.position.x) < launch_dist:
+		if int(rotation/rotation) != target_launch:
+			should_toggle_rot = true
+		
 	
 	if should_toggle_rot:
+		print("rotating")
+		print(ball.linear_velocity.y)
+		print(int(target_rotation/target_rotation))
+		print(target_launch)
 		toggle_rotation()
 		
 	rotation = lerp(rotation, target_rotation, rotation_lerp_weight)

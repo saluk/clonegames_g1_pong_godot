@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ufujpspdg32u"]
+[gd_scene load_steps=7 format=3 uid="uid://ufujpspdg32u"]
 
 [ext_resource type="Script" uid="uid://ba5g55prdmk4x" path="res://UI/match_ui.gd" id="1_3kbxo"]
+[ext_resource type="Theme" uid="uid://cfesykpkt6hh7" path="res://UI/lowres.tres" id="1_uetpe"]
 [ext_resource type="AudioStream" uid="uid://bkxy0iqii8v4s" path="res://Sound/whiff.wav" id="2_b1w1r"]
+[ext_resource type="Theme" uid="uid://df50wesntxov7" path="res://UI/green_shadow_label_theme.tres" id="3_7poc8"]
 [ext_resource type="AudioStream" uid="uid://0kmxl6wu66nh" path="res://Sound/gameover.wav" id="3_ekg4d"]
 [ext_resource type="AudioStream" uid="uid://d3c4x35hv4ac6" path="res://Sound/gameover2.wav" id="4_uetpe"]
 
@@ -15,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_uetpe")
 script = ExtResource("1_3kbxo")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
@@ -24,6 +27,7 @@ anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
 size_flags_vertical = 2
+theme = ExtResource("3_7poc8")
 dragging_enabled = false
 
 [node name="Player1Score" type="Label" parent="HSplitContainer" groups=["player1score"]]

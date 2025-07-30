@@ -1,8 +1,15 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cfesykpkt6hh7"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cfesykpkt6hh7"]
 
 [ext_resource type="FontFile" uid="uid://b5tv4h3b7qkol" path="res://UI/Silkscreen-Regular.ttf" id="1_qjb4d"]
+[ext_resource type="StyleBox" uid="uid://chn6rr0sbfp85" path="res://UI/glow_hover_menu_button_stylebox.tres" id="2_r3qbm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sw1pe"]
+draw_center = false
 
 [resource]
 Button/font_sizes/font_size = 8
 Button/fonts/font = ExtResource("1_qjb4d")
+Button/styles/focus = ExtResource("2_r3qbm")
+Button/styles/normal = SubResource("StyleBoxFlat_sw1pe")
+Label/fonts/font = ExtResource("1_qjb4d")
 VBoxContainer/constants/separation = 1

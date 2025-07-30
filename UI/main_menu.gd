@@ -2,7 +2,7 @@ extends Menu
 
 func init_data() -> void:
 	menu_data = [
-		"Main Menu",
+		"",
 		["1 Player", func()->void: self.start_match(1, 3)],
 		["2 Player Match", 
 			["2 Player",
