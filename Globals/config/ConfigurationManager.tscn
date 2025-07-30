@@ -6,6 +6,8 @@
 [sub_resource type="Resource" id="Resource_p30dc"]
 script = ExtResource("2_wr8pl")
 show_debug = false
+default_input_style = "player free rot no lerp"
+allow_cycle_modes = false
 metadata/_custom_type_script = "uid://gnt6lg776ai1"
 
 [node name="ConfigurationManager" type="Node"]

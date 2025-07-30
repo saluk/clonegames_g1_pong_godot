@@ -20,8 +20,8 @@ func trigger_updates():
 func set_config_value(key:String, value:Object):
 	_configuration.set(key, value)
 	
-func get_config_value(key:String, value:Object):
-	_configuration.set(key, value)
+func get_config_value(key:String):
+	return _configuration.get(key)
 		
 func toggle_debug() -> void:
 	for debug_object:CanvasItem in EventManager.get_tree().get_nodes_in_group("debug_object"):

@@ -35,6 +35,16 @@ func _ready()->void:
 		disable_ai()
 	disable()
 	enable()
+	pick_valid_mode()
+
+func pick_valid_mode() -> void:
+	if inputs:
+		var target_name = Configuration.get_config_value("default_input_style")
+		for inp in inputs:
+			if inp.name == target_name:
+				current_mode = inp
+				return
+			current_mode = inputs[0]
 	
 func enable_ai() -> void:
 	var new_inputs:Array[PaddleController] = []
@@ -46,7 +56,7 @@ func enable_ai() -> void:
 			new_inputs.append(inp)
 	inputs = new_inputs
 	disabled_inputs = new_input_disable
-	current_mode = inputs[0]
+	pick_valid_mode()
 	
 func disable_ai() -> void:
 	var new_inputs:Array[PaddleController] = []
@@ -58,9 +68,11 @@ func disable_ai() -> void:
 			new_inputs.append(inp)
 	inputs = new_inputs
 	disabled_inputs = new_input_disable
-	current_mode = inputs[0]
+	pick_valid_mode()
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not Configuration.get_config_value("allow_cycle_modes"):
+		return
 	if event.is_action_pressed(player+" switch input mode"):
 		var i := inputs.find(current_mode)
 		i += 1
