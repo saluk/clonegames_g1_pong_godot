@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cds1ci3254gvk"]
+[gd_scene load_steps=7 format=3 uid="uid://cds1ci3254gvk"]
 
 [ext_resource type="Theme" uid="uid://cfesykpkt6hh7" path="res://UI/lowres.tres" id="1_b37jj"]
 [ext_resource type="Script" uid="uid://bktfcd7v2mtak" path="res://UI/main_menu.gd" id="1_uahxu"]
 [ext_resource type="AudioStream" uid="uid://0fs7teo2qj2x" path="res://Sound/pongtry1.wav" id="3_8aown"]
 [ext_resource type="Theme" uid="uid://df50wesntxov7" path="res://UI/green_shadow_label_theme.tres" id="3_y6s48"]
 [ext_resource type="Script" uid="uid://dnmdau2dh2pl3" path="res://Util/audio_player_extra.gd" id="4_t6syg"]
+[ext_resource type="Script" uid="uid://sb744cppp0tu" path="res://UI/menu_button.gd" id="6_otjfi"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -69,3 +70,59 @@ stream = ExtResource("3_8aown")
 autoplay = true
 script = ExtResource("4_t6syg")
 loop = true
+
+[node name="ControlsPanel" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="ControlsPanel"]
+layout_mode = 0
+offset_top = 21.0
+offset_right = 40.0
+offset_bottom = 61.0
+scale = Vector2(4.96, 1.84)
+color = Color(0.118002, 0.0711919, 0, 1)
+
+[node name="ControlHBox" type="HBoxContainer" parent="ControlsPanel"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 0
+offset_top = 23.0
+offset_right = 212.0
+offset_bottom = 103.0
+
+[node name="p1" type="RichTextLabel" parent="ControlsPanel/ControlHBox"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 9
+bbcode_enabled = true
+text = "p1
+w - paddle up
+s - paddle down
+a - rot left
+d - rot right"
+
+[node name="p2" type="RichTextLabel" parent="ControlsPanel/ControlHBox"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 9
+bbcode_enabled = true
+text = "p2
+up - paddle up
+down - paddle down
+left - rot left
+right - rot right"
+
+[node name="ControlsBackButton" type="Button" parent="ControlsPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 75.0
+offset_top = 94.0
+offset_right = 114.0
+offset_bottom = 108.0
+focus_mode = 0
+text = "Back"
+script = ExtResource("6_otjfi")
+metadata/_custom_type_script = "uid://sb744cppp0tu"

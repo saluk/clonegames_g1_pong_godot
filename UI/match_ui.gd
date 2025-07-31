@@ -56,6 +56,8 @@ func pause_menu() -> void:
 		get_tree().paused = true
 		pause_menu_ui = load("res://UI/PauseMenu.tscn").instantiate()
 		add_child(pause_menu_ui)
+	else:
+		resume_match()
 
 func resume_match() -> void:
 	if pause_menu_ui:

@@ -1,4 +1,5 @@
 extends Button
+class_name MyMenuButton
 
 var next_shift := 0.0
 var is_selected := false
@@ -12,6 +13,7 @@ func _ready() -> void:
 func enter_focus() -> void:
 	is_selected = true
 	next_shift = 0.0
+	grab_focus()
 	
 func exit_focus() -> void:
 	is_selected = false
