@@ -51,7 +51,7 @@ offset_top = 84.0
 offset_right = 82.0
 offset_bottom = 107.0
 theme_override_font_sizes/font_size = 10
-text = "v 0.8"
+text = "v 0.9.0"
 vertical_alignment = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
