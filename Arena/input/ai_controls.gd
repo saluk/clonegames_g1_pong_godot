@@ -53,10 +53,6 @@ func controller_physics(dt: float) -> void:
 		
 	
 	if should_toggle_rot:
-		print("rotating")
-		print(ball.linear_velocity.y)
-		print(int(target_rotation/target_rotation))
-		print(target_launch)
 		toggle_rotation()
 		
 	rotation = lerp(rotation, target_rotation, rotation_lerp_weight)
